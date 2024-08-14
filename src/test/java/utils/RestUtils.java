@@ -27,9 +27,12 @@ public class RestUtils {
         return response = RestAssured.given()
                 .contentType(contentType)
                 .body(json)
+                .log().all()
                 .when()
                 .post(endpoint)
-                .thenReturn();
+                .then()
+                .log().all()
+                .extract().response();
 
     }
 
